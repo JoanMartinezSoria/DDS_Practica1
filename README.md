@@ -1,2 +1,6 @@
 # DDS_Practica1
-Primera practica de la asignatura de Data Driven Security del master de Cybersecurity Management
+## Integrantes del grupo
+
+- **Joan Martinez** [JoanMartinezSoria]
+- **Marta Ametller** [martis73]
+- **Nicole Hernandez** [pnhp504]
