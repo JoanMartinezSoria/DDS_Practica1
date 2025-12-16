@@ -45,5 +45,10 @@ library("tidyr")
 logs <- logs %>% mutate(X5 = replace_na(X5, 0))
 print(logs)
 ```
+Ahora que el dataset esta limpio, procedemos a poner los nombres de las columnas.
+```{r}
+colnames(logs) <- c("IP", "Timestamp", "Peticion", "CodigoRespuesta", "BytesReply")
 
-
+head(logs)
+```
+Con esto ya tenemos nuestro dataset limpio y preparado para poder empezar a realizar el analisis sobre este.
