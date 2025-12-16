@@ -19,5 +19,31 @@ library("readr")
 
 logs <- read_log("epa-http.csv")
 ```
+Si nos fijamos en la salida anterior, observamos 2 datos importantes respecto a al almacenamiento de datos anterior.
+Primero nos aparecen las columnas que tiene nuestro dataset, con su respectivo tipo cada una i seguido tenemos un conjunto de Warnings para algunos de nuestros elementos.
+
+Empezaremos analizando que es lo que sucede con estos Warnings, por lo que empezaremos gurdando todos los id de las filas donde ha sucedido algún error.
+```{r}
+errores <- problems(logs)$row
+print(errores)
+```
+Seguidamente, para todos las filas donde hay errores, obtenemos todas las columnas.
+```{r}
+filas_con_errores <- logs[errores, ]
+print(filas_con_errores)
+```
+Si obserbamos los datos obtenidos, la columna X4, que corresponde al estado de las llamadas HTTP, siempre da como resultado 404 (Not Found).
+Como hemos visto antes, la columna X5 es representada por col_double (que son numeros) por lo que si R detecta otro tipo de dato que no sea este, por defecto lo pondra como NA.
+Para poder tenerlos en cuenta, hemos decidido modificar los datos obtenidos por tal de hacer lo siguiente:
+Cualquier elemento existente dentro de la columna X5 con valor NA, será sustituido por el valor 0.
+```{r}
+#install.packages("dplyr")
+#install.packages("tidyr")
+library("dplyr")
+library("tidyr")
+
+logs <- logs %>% mutate(X5 = replace_na(X5, 0))
+print(logs)
+```
 
 
