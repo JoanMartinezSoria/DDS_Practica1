@@ -8,22 +8,26 @@ date: "2025-12-15"
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
+**1. Data Science**
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+**Pregunta 1:**
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+De las siguientes preguntas, clasifica cada una como descriptiva, exploratoria, inferencia, predictiva o causal, y razona brevemente (una frase) el porqué:
 
-```{r cars}
-summary(cars)
-```
+**1. Dado un registro de vehículos que circulan por una autopista, disponemos de su marca y modelo, país de matriculación, y tipo de vehículo (por número de ruedas). Con tal de ajustar precios de los peajes, ¿Cuántos vehículos tenemos por tipo? ¿Cuál es el tipo más frecuente? ¿De qué países tenemos más vehículos?**
 
-## Including Plots
+Podemos clasificar las tres preguntas como descriptivas, ya que en todos los casos se cuantifican los datos disponibles, sin analizar relaciones entre variables ni realizar predicciones o inferencias causales.
 
-You can also embed plots, for example:
+**2. Dado un registro de visualizaciones de un servicio de video-on-demand, donde disponemos de los datos del usuario, de la película seleccionada, fecha de visualización y categoría de la película, queremos saber ¿Hay alguna preferencia en cuanto a género literario según los usuarios y su rango de edad?**
 
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
+Podemos clasificar este pregunta como exploratoria porque pretende identificar la existencia de patrones o relaciones entre variables, en este caso, edad y género literario, sin partir de una hipótesis previa ni realizar inferencias.
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+**3. Dado un registro de peticiones a un sitio web, vemos que las peticiones que provienen de una red de telefonía concreta acostumbran a ser incorrectas y provocarnos errores de servicio. ¿Podemos determinar si en el futuro, los próximos mensajes de esa red seguirán dando problemas? ¿Hemos notado el mismo efecto en otras redes de telefonía?**
+
+ - Podemos clasificar la pregunta “¿Podemos determinar si en el futuro, los próximos mensajes de esa red seguirán dando problemas?” como predictiva porque busca anticipar el comportamiento futuro de las peticiones de esa red, en otras palabras, predecir resultados futuros a partir de datos históricos.
+
+ - Podemos clasificar la pregunta “¿Hemos notado el mismo efecto en otras redes de telefonía?”como exploratoria, en tanto que pretende analizar si el patrón observado se reproduce en otros subconjuntos de datos, de manera neutral objetiva sin establecer relaciones causales ni realizar predicciones.
+
+**4. Dado los registros de usuarios de un servicio de compras por internet, los usuarios pueden agruparse por preferencias de productos comprados. Queremos saber si ¿Es posible que, dado un usuario al azar y según su historial, pueda ser directamente asignado a un o diversos grupos?**
+
+Podemos clasificar la pregunta como de inferencia porque busca asignar un usuario a uno o varios grupos definidos por preferencias de productos, a partir de su historial de compras.
