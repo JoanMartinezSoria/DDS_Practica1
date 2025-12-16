@@ -2,13 +2,110 @@
 title: "Práctica 1"
 output: html_document
 date: "2025-12-15"
+editor_options: 
+  markdown: 
+    wrap: 72
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Pregunta 1
+**1. Data Science**
+
+**Pregunta 1:**
+
+De las siguientes preguntas, clasifica cada una como descriptiva, exploratoria, inferencia, predictiva o causal, y razona brevemente (una frase) el porqué:
+
+**1. Dado un registro de vehículos que circulan por una autopista, disponemos de su marca y modelo, país de matriculación, y tipo de vehículo (por número de ruedas). Con tal de ajustar precios de los peajes, ¿Cuántos vehículos tenemos por tipo? ¿Cuál es el tipo más frecuente? ¿De qué países tenemos más vehículos?**
+
+Podemos clasificar las tres preguntas como descriptivas, ya que en todos los casos se cuantifican los datos disponibles, sin analizar relaciones entre variables ni realizar predicciones o inferencias causales.
+
+**2. Dado un registro de visualizaciones de un servicio de video-on-demand, donde disponemos de los datos del usuario, de la película seleccionada, fecha de visualización y categoría de la película, queremos saber ¿Hay alguna preferencia en cuanto a género literario según los usuarios y su rango de edad?**
+
+Podemos clasificar este pregunta como exploratoria porque pretende identificar la existencia de patrones o relaciones entre variables, en este caso, edad y género literario, sin partir de una hipótesis previa ni realizar inferencias.
+
+**3. Dado un registro de peticiones a un sitio web, vemos que las peticiones que provienen de una red de telefonía concreta acostumbran a ser incorrectas y provocarnos errores de servicio. ¿Podemos determinar si en el futuro, los próximos mensajes de esa red seguirán dando problemas? ¿Hemos notado el mismo efecto en otras redes de telefonía?**
+
+ - Podemos clasificar la pregunta “¿Podemos determinar si en el futuro, los próximos mensajes de esa red seguirán dando problemas?” como predictiva porque busca anticipar el comportamiento futuro de las peticiones de esa red, en otras palabras, predecir resultados futuros a partir de datos históricos.
+
+ - Podemos clasificar la pregunta “¿Hemos notado el mismo efecto en otras redes de telefonía?”como exploratoria, en tanto que pretende analizar si el patrón observado se reproduce en otros subconjuntos de datos, de manera neutral objetiva sin establecer relaciones causales ni realizar predicciones.
+
+**4. Dado los registros de usuarios de un servicio de compras por internet, los usuarios pueden agruparse por preferencias de productos comprados. Queremos saber si ¿Es posible que, dado un usuario al azar y según su historial, pueda ser directamente asignado a un o diversos grupos?**
+
+Podemos clasificar la pregunta como de inferencia porque busca asignar un usuario a uno o varios grupos definidos por preferencias de productos, a partir de su historial de compras.
+
+Pregunta 2 Enunciado
+
+Considera el siguiente escenario: Sabemos que un usuario de nuestra red
+empresarial ha estado usando esta para fines no relacionados con el
+trabajo, como por ejemplo tener un servicio web no autorizado abierto a
+la red (otros usuarios tienen servicios web activados y autorizados). No
+queremos tener que rastrear los puertos de cada PC, y sabemos que la
+actividad puede haber cesado. Pero podemos acceder a los registros de
+conexiones TCP de cada máquina de cada trabajador (hacia donde abre
+conexión un PC concreto). Sabemos que nuestros clientes se conectan
+desde lugares remotos de forma legítima, como parte de nuestro negocio,
+y que un trabajador puede haber habilitado temporalmente servicios de
+prueba. Nuestro objetivo es reducir lo posible la lista de posibles
+culpables, con tal de explicarles que por favor no expongan nuestros
+sistemas sin permiso de los operadores o la dirección. Explica con
+detalle cómo se podría proceder al análisis y resolución del problema
+mediante Data Science, indicando de donde se obtendrían los datos, qué
+tratamiento deberían recibir, qué preguntas hacerse para resolver el
+problema, qué datos y gráficos se obtendrían, y cómo se comunicarían
+estos
+
+Respuesta
+El problema planteado consiste en identificar posibles
+usuarios internos que hayan expuesto servicios web no autorizados
+utilizando unicamente registros de conexiones TCP salientes, evitando
+tecnicas intrusivas como el escaneo de puertos y teniendo en cuenta que
+la actividad puede haber sido temporal o ya finalizada.
+
+El primer paso seria la obtencion de datos. En este caso, la fuente
+principal serian los registros de conexiones TCP de los equipos de los
+trabajadores, donde se recojan al menos la IP origen interna, IP
+destino, puerto destino, timestamp y si es posible, volumen de datos
+transmitidos. Estos registros podrian obtenerse de firewalls, sistemas
+de monitorizacion de red, logs de proxies o herramientas de NetFlow.
+
+Una vez recopilados los datos, seria necesario realizar un proceso de
+limpieza y normalizacion. Esto inlcuiria la eliminacion de registros
+incompletos o corruptos, la unificacion de formatos de fecha y hora, y
+la anomizacion de datos sensibles para cumplir con principios de
+privacidad. Tambien seria importante etiquetar o filtrar conexiones
+legitimas conocidas, como accesos a servicios corporativos, conexiones
+VPN de clientes o servidores externos autorizados.
+
+El siguiente paso seria formular preguntas clave del analisis, que
+guiaran la exploracion de los datos. Algunas preguntas serian: Existen
+equipos internos que realicen conexiones entrantes recurrentes desde
+multiples IPs externas? Se observan patrones de conexion tipicos de
+servicios web? Hay equipos cuyo patron de conexiones difiere
+significativamente del comportamiento normal del resto de usuarios?
+Estas conexiones se concentran en determinadas franjas horarias o
+periodos concretos?
+
+A nivel de analisis y visualizacion, se podran generar graficos de
+distribucion del numero de conexiones entrantes por equipo, series
+temporales de conexiones TCP por host interno y mapas de calor que
+relacionen equipos internos con puertos y frecuencias de conexion.
+Tambien serian utiles tecnicas de deteccion de anomalias para
+identificar equipos cuyo comportamiento se aleje del patron general de
+la red. El resultado esperado no seria una acusacion directa, sino una
+reduccion progressiva del conjunto de sospechosos, identifcando aquellos
+equipos que presentan patrones compatibles con la exposicion temporal de
+servicios web no autorizados. Esta lista permitiria una intervencion
+manual posterior.
+
+Finalmente, los resultados se comunicarian de forma clara y
+comprensible, combinando graficos visuales con un resumen explicativos
+que justifique por que ciertos equipos han sido destacados. El objetivo
+de la comunicacion no seria sancionador, sino preventivos y educativo,
+facilitando el dialogo con los usuarios implicados para explicar los
+riesgos de exponer servicios sin autorizacion y reforzar las politicas
+de seguridad de la organizacion.
 
 ## Introducción a R
 
@@ -63,7 +160,9 @@ head(logs)
 Con esto ya tenemos nuestro dataset limpio y preparado para poder empezar a realizar el analisis sobre este.
 
 ### Pregunta 1
-1. Cuales son las dimensiones del dataset cargado (número de filas y columnas)
+
+1.  Cuales son las dimensiones del dataset cargado (número de filas y columnas)
+
 ```{r}
 rows <- nrow(logs)
 columns <- ncol(logs)
@@ -71,7 +170,9 @@ columns <- ncol(logs)
 print(rows)
 print(columns)
 ```
-2. Valor medio de la columna Bytes
+
+2.  Valor medio de la columna Bytes
+
 ```{r}
 media <- mean(logs$BytesReply)
 
@@ -79,8 +180,9 @@ print(media)
 ```
 
 ### Pregunta 2
-De las diferentes IPs de origen accediendo al servidor, ¿cuantas pertenecen a una IP
-claramente educativa (que contenga ".edu")?
+
+De las diferentes IPs de origen accediendo al servidor, ¿cuantas pertenecen a una IP claramente educativa (que contenga ".edu")?
+
 ```{r}
 #install.packages("stringr")
 library("stringr")
@@ -90,11 +192,13 @@ ips <- logs$IP
 ips_edu <- str_subset(ips,"\\.edu$")
 print(ips_edu)
 ```
+
 ```{r}
 total_ips_edu <- length(ips_edu)
 
 print(total_ips_edu)
 ```
+
 ```{r}
 ips_edu_unicas <- unique(ips_edu)
 total_ips_edu_unicas <- length(ips_edu_unicas)
@@ -124,6 +228,51 @@ print(hora_pico[1,])
 ```
 
 ### Pregunta 4
-### Pregunta 5
-### Pregunta 6
+De las peticiones hechas por instituciones educativas (.edu), ¿Cuantos bytes en total se 
+han transmitido, en peticiones de descarga de ficheros de texto ".txt"?
+```{r}
+library(readr)
+library(dplyr)
+library(stringr)
 
+logs <- read_delim(
+  "epa-http.csv",
+  delim = " ",
+  col_names = FALSE,
+  quote = "\"",
+  trim_ws = TRUE
+  
+)
+
+ncol(logs)
+
+colnames(logs)[1:7] <- c("host", "time", "request", "status", "bytes")
+
+logs <- logs %>%
+  mutate(
+    bytes = ifelse(bytes == "-" | is.na(bytes), "0", bytes),
+    bytes = as.numeric(bytes)
+  )
+  
+logs2 <- logs%>%
+  mutate(
+    req_parts =str_split(request, " ", simplify = TRUE),
+    method = req_parts[,1],
+    url = req_parts[,2],
+    proto = req_parts[,3]
+  )
+
+p4 <- logs2 %>%
+  filter(str_detect(host, "\\.edu")) %>%
+  filter(str_detect(url, "\\.txt$")) %>%
+  summarise(total_bytes_txt = sum(bytes, na.rm = TRUE))
+
+p4
+
+p4$total_bytes_txt
+
+```
+Para responder a esta pregunta se filtraron las peticiones cuyo host pertenece a instituciones educativas (dominios que continen ".edu") y cuya URL corresponde a descargas de ficheros de texto con extension ".txt". Posteriormente, se calcularon los bytes totales transmitidos sumando la columna 'bytes', tras convertirla previamente a formato numerico y tratar valores ausentes.
+### Pregunta 5
+
+### Pregunta 6
