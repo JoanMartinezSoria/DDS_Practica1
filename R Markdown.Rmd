@@ -2,6 +2,9 @@
 title: "Práctica 1"
 output: html_document
 date: "2025-12-15"
+editor_options: 
+  markdown: 
+    wrap: 72
 ---
 
 ```{r setup, include=FALSE}
@@ -10,9 +13,13 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## R Markdown
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+This is an R Markdown document. Markdown is a simple formatting syntax
+for authoring HTML, PDF, and MS Word documents. For more details on
+using R Markdown see <http://rmarkdown.rstudio.com>.
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+When you click the **Knit** button a document will be generated that
+includes both content as well as the output of any embedded R code
+chunks within the document. You can embed an R code chunk like this:
 
 ```{r cars}
 summary(cars)
@@ -26,41 +33,77 @@ You can also embed plots, for example:
 plot(pressure)
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+Note that the `echo = FALSE` parameter was added to the code chunk to
+prevent printing of the R code that generated the plot.
 
 Pregunta 2 Enunciado
 
-Considera el siguiente escenario:
-Sabemos que un usuario de nuestra red empresarial ha estado usando esta para fines 
-no relacionados con el trabajo, como por ejemplo tener un servicio web no autorizado
-abierto a la red (otros usuarios tienen servicios web activados y autorizados). No 
-queremos tener que rastrear los puertos de cada PC, y sabemos que la actividad puede 
-haber cesado. Pero podemos acceder a los registros de conexiones TCP de cada máquina 
-de cada trabajador (hacia donde abre conexión un PC concreto). Sabemos que nuestros 
-clientes se conectan desde lugares remotos de forma legítima, como parte de nuestro 
-negocio, y que un trabajador puede haber habilitado temporalmente servicios de 
-prueba. Nuestro objetivo es reducir lo posible la lista de posibles culpables, con tal de 
-explicarles que por favor no expongan nuestros sistemas sin permiso de los operadores
-o la dirección.
-Explica con detalle cómo se podría proceder al análisis y resolución del problema
-mediante Data Science, indicando de donde se obtendrían los datos, qué tratamiento 
-deberían recibir, qué preguntas hacerse para resolver el problema, qué datos y gráficos 
-se obtendrían, y cómo se comunicarían estos
+Considera el siguiente escenario: Sabemos que un usuario de nuestra red
+empresarial ha estado usando esta para fines no relacionados con el
+trabajo, como por ejemplo tener un servicio web no autorizado abierto a
+la red (otros usuarios tienen servicios web activados y autorizados). No
+queremos tener que rastrear los puertos de cada PC, y sabemos que la
+actividad puede haber cesado. Pero podemos acceder a los registros de
+conexiones TCP de cada máquina de cada trabajador (hacia donde abre
+conexión un PC concreto). Sabemos que nuestros clientes se conectan
+desde lugares remotos de forma legítima, como parte de nuestro negocio,
+y que un trabajador puede haber habilitado temporalmente servicios de
+prueba. Nuestro objetivo es reducir lo posible la lista de posibles
+culpables, con tal de explicarles que por favor no expongan nuestros
+sistemas sin permiso de los operadores o la dirección. Explica con
+detalle cómo se podría proceder al análisis y resolución del problema
+mediante Data Science, indicando de donde se obtendrían los datos, qué
+tratamiento deberían recibir, qué preguntas hacerse para resolver el
+problema, qué datos y gráficos se obtendrían, y cómo se comunicarían
+estos
 
 Respuesta
-El problema planteado consiste en identificar posibles usuarios internos que hayan expuesto servicios web no autorizados utilizando unicamente registros de conexiones TCP salientes, evitando tecnicas intrusivas como el escaneo de puertos y teniendo en cuenta que la actividad puede haber sido temporal o ya finalizada. 
+El problema planteado consiste en identificar posibles
+usuarios internos que hayan expuesto servicios web no autorizados
+utilizando unicamente registros de conexiones TCP salientes, evitando
+tecnicas intrusivas como el escaneo de puertos y teniendo en cuenta que
+la actividad puede haber sido temporal o ya finalizada.
 
-El primer paso seria la obtencion de datos. En este caso, la fuente principal serian los registros de conexiones TCP de los equipos de los trabajadores, donde se recojan al menos la IP origen interna, IP destino, puerto destino, timestamp y si es posible, volumen de datos transmitidos. Estos registros podrian obtenerse de firewalls, sistemas de monitorizacion de red, logs de proxies o herramientas de NetFlow. 
+El primer paso seria la obtencion de datos. En este caso, la fuente
+principal serian los registros de conexiones TCP de los equipos de los
+trabajadores, donde se recojan al menos la IP origen interna, IP
+destino, puerto destino, timestamp y si es posible, volumen de datos
+transmitidos. Estos registros podrian obtenerse de firewalls, sistemas
+de monitorizacion de red, logs de proxies o herramientas de NetFlow.
 
-Una vez recopilados los datos, seria necesario realizar un proceso de limpieza y normalizacion. Esto inlcuiria la eliminacion de registros incompletos o corruptos, la unificacion de formatos de fecha y hora, y la anomizacion de datos sensibles para cumplir con principios de privacidad. Tambien seria importante etiquetar o filtrar conexiones legitimas conocidas, como accesos a servicios corporativos, conexiones VPN de clientes o servidores externos autorizados. 
+Una vez recopilados los datos, seria necesario realizar un proceso de
+limpieza y normalizacion. Esto inlcuiria la eliminacion de registros
+incompletos o corruptos, la unificacion de formatos de fecha y hora, y
+la anomizacion de datos sensibles para cumplir con principios de
+privacidad. Tambien seria importante etiquetar o filtrar conexiones
+legitimas conocidas, como accesos a servicios corporativos, conexiones
+VPN de clientes o servidores externos autorizados.
 
-El siguiente paso seria formular preguntas clave del analisis, que guiaran la exploracion de los datos. Algunas preguntas serian:
-Existen equipos internos que realicen conexiones entrantes recurrentes desde multiples IPs externas?
-Se observan patrones de conexion tipicos de servicios web?
-Hay equipos cuyo patron de conexiones difiere significativamente del comportamiento normal del resto de usuarios?
-Estas conexiones se concentran en determinadas franjas horarias o periodos concretos?
+El siguiente paso seria formular preguntas clave del analisis, que
+guiaran la exploracion de los datos. Algunas preguntas serian: Existen
+equipos internos que realicen conexiones entrantes recurrentes desde
+multiples IPs externas? Se observan patrones de conexion tipicos de
+servicios web? Hay equipos cuyo patron de conexiones difiere
+significativamente del comportamiento normal del resto de usuarios?
+Estas conexiones se concentran en determinadas franjas horarias o
+periodos concretos?
 
-A nivel de analisis y visualizacion, se podran generar graficos de distribucion del numero de conexiones entrantes por equipo, series temporales de conexiones TCP por host interno y mapas de calor que relacionen equipos internos con puertos y frecuencias de conexion. Tambien serian utiles tecnicas de deteccion de anomalias para identificar equipos cuyo comportamiento se aleje del patron general de la red. 
-El resultado esperado no seria una acusacion directa, sino una reduccion progressiva del conjunto de sospechosos, identifcando aquellos equipos que presentan patrones compatibles con la exposicion temporal de servicios web no autorizados. Esta lista permitiria una intervencion manual posterior. 
+A nivel de analisis y visualizacion, se podran generar graficos de
+distribucion del numero de conexiones entrantes por equipo, series
+temporales de conexiones TCP por host interno y mapas de calor que
+relacionen equipos internos con puertos y frecuencias de conexion.
+Tambien serian utiles tecnicas de deteccion de anomalias para
+identificar equipos cuyo comportamiento se aleje del patron general de
+la red. El resultado esperado no seria una acusacion directa, sino una
+reduccion progressiva del conjunto de sospechosos, identifcando aquellos
+equipos que presentan patrones compatibles con la exposicion temporal de
+servicios web no autorizados. Esta lista permitiria una intervencion
+manual posterior.
 
-Finalmente, los resultados se comunicarian de forma clara y comprensible, combinando graficos visuales con un resumen explicativos que justifique por que ciertos equipos han sido destacados. El objetivo de la comunicacion no seria sancionador, sino preventivos y educativo, facilitando el dialogo con los usuarios implicados para explicar los riesgos de exponer servicios sin autorizacion y reforzar las politicas de seguridad de la organizacion.
+Finalmente, los resultados se comunicarian de forma clara y
+comprensible, combinando graficos visuales con un resumen explicativos
+que justifique por que ciertos equipos han sido destacados. El objetivo
+de la comunicacion no seria sancionador, sino preventivos y educativo,
+facilitando el dialogo con los usuarios implicados para explicar los
+riesgos de exponer servicios sin autorizacion y reforzar las politicas
+de seguridad de la organizacion.
