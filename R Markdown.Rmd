@@ -101,8 +101,28 @@ total_ips_edu_unicas <- length(ips_edu_unicas)
 
 print(total_ips_edu_unicas)
 ```
-
 ### Pregunta 3
+De todas las peticiones recibidas por el servidor cual es la hora en la que hay mayor volumen de peticiones HTTP de tipo "GET"?
+```{r}
+#Obtenemos todos los logs que realizen una peticion GET
+peticiones_get <- logs[grep("GET", logs$Peticion), ]
+
+#Buscamos la "hora pico" dentro de nuestro listado de logs que realizan peticiones GET
+hora_pico <- peticiones_get %>%
+  #Tratamos el Timestamp para poder dividir los valores de este y poder diferenciarlos
+  mutate(Timestamp = str_remove_all(Timestamp, "\\[|\\]")) %>%
+  separate(Timestamp, into = c("Dia", "Hora", "Minuto", "Segundo"), sep = ":", convert = TRUE) %>%
+  #Hacemos el recuento por Horas
+  count(Hora, sort = TRUE)
+
+print(hora_pico)
+
+```
+La hora donde hay mas logs de con peticiones GET es:
+```{r}
+print(hora_pico[1,])
+```
+
 ### Pregunta 4
 ### Pregunta 5
 ### Pregunta 6
