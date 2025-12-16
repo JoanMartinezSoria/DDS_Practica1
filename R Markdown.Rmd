@@ -206,6 +206,7 @@ total_ips_edu_unicas <- length(ips_edu_unicas)
 print(total_ips_edu_unicas)
 ```
 ### Pregunta 3
+
 De todas las peticiones recibidas por el servidor cual es la hora en la que hay mayor volumen de peticiones HTTP de tipo "GET"?
 ```{r}
 #Obtenemos todos los logs que realizen una peticion GET
@@ -273,6 +274,24 @@ p4$total_bytes_txt
 
 ```
 Para responder a esta pregunta se filtraron las peticiones cuyo host pertenece a instituciones educativas (dominios que continen ".edu") y cuya URL corresponde a descargas de ficheros de texto con extension ".txt". Posteriormente, se calcularon los bytes totales transmitidos sumando la columna 'bytes', tras convertirla previamente a formato numerico y tratar valores ausentes.
+
 ### Pregunta 5
 
-### Pregunta 6
+Si separamos la petición en 3 partes (Tipo, URL, Protocolo), usando str_split y el separador " " (espacio), ¿cuantas peticiones buscan directamente la URL = "/"?
+
+```{r}
+#logs$Peticion <- str_split(logs$Peticion, " ", simplify = TRUE)
+sum(logs$Peticion[,2] == "/")
+
+```
+
+```{Pregunta 6}
+```
+
+###Pregunta 6
+
+Aprovechando que hemos separado la petición en 3 partes (Tipo, URL, Protocolo) ¿Cuantas peticiones NO tienen como protocolo "HTTP/0.2"?
+
+```{r}
+sum(logs$Peticion[,3] != "HTTP/0.2")
+```
