@@ -63,7 +63,9 @@ head(logs)
 Con esto ya tenemos nuestro dataset limpio y preparado para poder empezar a realizar el analisis sobre este.
 
 ### Pregunta 1
-1. Cuales son las dimensiones del dataset cargado (número de filas y columnas)
+
+1.  Cuales son las dimensiones del dataset cargado (número de filas y columnas)
+
 ```{r}
 rows <- nrow(logs)
 columns <- ncol(logs)
@@ -71,7 +73,9 @@ columns <- ncol(logs)
 print(rows)
 print(columns)
 ```
-2. Valor medio de la columna Bytes
+
+2.  Valor medio de la columna Bytes
+
 ```{r}
 media <- mean(logs$BytesReply)
 
@@ -79,8 +83,9 @@ print(media)
 ```
 
 ### Pregunta 2
-De las diferentes IPs de origen accediendo al servidor, ¿cuantas pertenecen a una IP
-claramente educativa (que contenga ".edu")?
+
+De las diferentes IPs de origen accediendo al servidor, ¿cuantas pertenecen a una IP claramente educativa (que contenga ".edu")?
+
 ```{r}
 #install.packages("stringr")
 library("stringr")
@@ -90,11 +95,13 @@ ips <- logs$IP
 ips_edu <- str_subset(ips,"\\.edu$")
 print(ips_edu)
 ```
+
 ```{r}
 total_ips_edu <- length(ips_edu)
 
 print(total_ips_edu)
 ```
+
 ```{r}
 ips_edu_unicas <- unique(ips_edu)
 total_ips_edu_unicas <- length(ips_edu_unicas)
@@ -103,7 +110,18 @@ print(total_ips_edu_unicas)
 ```
 
 ### Pregunta 3
-### Pregunta 4
-### Pregunta 5
-### Pregunta 6
 
+### Pregunta 4
+
+### Pregunta 5
+
+Si separamos la petición en 3 partes (Tipo, URL, Protocolo), usando str_split y el separador " " (espacio), ¿cuantas peticiones buscan directamente la URL = "/"?
+
+```{r}
+#logs$Peticion <- str_split(logs$Peticion, " ", simplify = TRUE)
+sum(logs$Peticion[,2] == "/")
+
+```
+
+```{Pregunta 6}
+```
