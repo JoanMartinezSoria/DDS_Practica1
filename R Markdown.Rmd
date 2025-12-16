@@ -63,7 +63,9 @@ head(logs)
 Con esto ya tenemos nuestro dataset limpio y preparado para poder empezar a realizar el analisis sobre este.
 
 ### Pregunta 1
-1. Cuales son las dimensiones del dataset cargado (número de filas y columnas)
+
+1.  Cuales son las dimensiones del dataset cargado (número de filas y columnas)
+
 ```{r}
 rows <- nrow(logs)
 columns <- ncol(logs)
@@ -71,7 +73,9 @@ columns <- ncol(logs)
 print(rows)
 print(columns)
 ```
-2. Valor medio de la columna Bytes
+
+2.  Valor medio de la columna Bytes
+
 ```{r}
 media <- mean(logs$BytesReply)
 
@@ -79,8 +83,9 @@ print(media)
 ```
 
 ### Pregunta 2
-De las diferentes IPs de origen accediendo al servidor, ¿cuantas pertenecen a una IP
-claramente educativa (que contenga ".edu")?
+
+De las diferentes IPs de origen accediendo al servidor, ¿cuantas pertenecen a una IP claramente educativa (que contenga ".edu")?
+
 ```{r}
 #install.packages("stringr")
 library("stringr")
@@ -90,11 +95,13 @@ ips <- logs$IP
 ips_edu <- str_subset(ips,"\\.edu$")
 print(ips_edu)
 ```
+
 ```{r}
 total_ips_edu <- length(ips_edu)
 
 print(total_ips_edu)
 ```
+
 ```{r}
 ips_edu_unicas <- unique(ips_edu)
 total_ips_edu_unicas <- length(ips_edu_unicas)
@@ -103,7 +110,53 @@ print(total_ips_edu_unicas)
 ```
 
 ### Pregunta 3
-### Pregunta 4
-### Pregunta 5
-### Pregunta 6
 
+### Pregunta 4
+De las peticiones hechas por instituciones educativas (.edu), ¿Cuantos bytes en total se 
+han transmitido, en peticiones de descarga de ficheros de texto ".txt"?
+```{r}
+library(readr)
+library(dplyr)
+library(stringr)
+
+logs <- read_delim(
+  "epa-http.csv",
+  delim = " ",
+  col_names = FALSE,
+  quote = "\"",
+  trim_ws = TRUE
+  
+)
+
+ncol(logs)
+
+colnames(logs)[1:7] <- c("host", "time", "request", "status", "bytes")
+
+logs <- logs %>%
+  mutate(
+    bytes = ifelse(bytes == "-" | is.na(bytes), "0", bytes),
+    bytes = as.numeric(bytes)
+  )
+  
+logs2 <- logs%>%
+  mutate(
+    req_parts =str_split(request, " ", simplify = TRUE),
+    method = req_parts[,1],
+    url = req_parts[,2],
+    proto = req_parts[,3]
+  )
+
+p4 <- logs2 %>%
+  filter(str_detect(host, "\\.edu")) %>%
+  filter(str_detect(url, "\\.txt$")) %>%
+  summarise(total_bytes_txt = sum(bytes, na.rm = TRUE))
+
+p4
+
+p4$total_bytes_txt
+
+```
+Para responder a esta pregunta se filtraron las peticiones cuyo host pertenece a instituciones educativas (dominios que continen ".edu") y cuya URL corresponde a descargas de ficheros de texto con extension ".txt". Posteriormente, se calcularon los bytes totales transmitidos sumando la columna 'bytes', tras convertirla previamente a formato numerico y tratar valores ausentes.
+### Pregunta 5
+
+### Pregunta 6
