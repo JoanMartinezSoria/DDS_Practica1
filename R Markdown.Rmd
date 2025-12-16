@@ -125,3 +125,11 @@ sum(logs$Peticion[,2] == "/")
 
 ```{Pregunta 6}
 ```
+
+###Pregunta 6
+
+Aprovechando que hemos separado la petición en 3 partes (Tipo, URL, Protocolo) ¿Cuantas peticiones NO tienen como protocolo "HTTP/0.2"?
+
+```{r}
+sum(logs$Peticion[,3] != "HTTP/0.2")
+```
