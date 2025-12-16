@@ -11,31 +11,66 @@ editor_options:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-**1. Data Science**
+# Actividad Evaluable 1
 
-**Pregunta 1:**
+## 1. Data Science
 
-De las siguientes preguntas, clasifica cada una como descriptiva, exploratoria, inferencia, predictiva o causal, y razona brevemente (una frase) el porqué:
+### Pregunta 1:
 
-**1. Dado un registro de vehículos que circulan por una autopista, disponemos de su marca y modelo, país de matriculación, y tipo de vehículo (por número de ruedas). Con tal de ajustar precios de los peajes, ¿Cuántos vehículos tenemos por tipo? ¿Cuál es el tipo más frecuente? ¿De qué países tenemos más vehículos?**
+De las siguientes preguntas, clasifica cada una como descriptiva,
+exploratoria, inferencia, predictiva o causal, y razona brevemente (una
+frase) el porqué:
 
-Podemos clasificar las tres preguntas como descriptivas, ya que en todos los casos se cuantifican los datos disponibles, sin analizar relaciones entre variables ni realizar predicciones o inferencias causales.
+**1. Dado un registro de vehículos que circulan por una autopista,
+disponemos de su marca y modelo, país de matriculación, y tipo de
+vehículo (por número de ruedas). Con tal de ajustar precios de los
+peajes, ¿Cuántos vehículos tenemos por tipo? ¿Cuál es el tipo más
+frecuente? ¿De qué países tenemos más vehículos?**
 
-**2. Dado un registro de visualizaciones de un servicio de video-on-demand, donde disponemos de los datos del usuario, de la película seleccionada, fecha de visualización y categoría de la película, queremos saber ¿Hay alguna preferencia en cuanto a género literario según los usuarios y su rango de edad?**
+Podemos clasificar las tres preguntas como descriptivas, ya que en todos
+los casos se cuantifican los datos disponibles, sin analizar relaciones
+entre variables ni realizar predicciones o inferencias causales.
 
-Podemos clasificar este pregunta como exploratoria porque pretende identificar la existencia de patrones o relaciones entre variables, en este caso, edad y género literario, sin partir de una hipótesis previa ni realizar inferencias.
+**2. Dado un registro de visualizaciones de un servicio de
+video-on-demand, donde disponemos de los datos del usuario, de la
+película seleccionada, fecha de visualización y categoría de la
+película, queremos saber ¿Hay alguna preferencia en cuanto a género
+literario según los usuarios y su rango de edad?**
 
-**3. Dado un registro de peticiones a un sitio web, vemos que las peticiones que provienen de una red de telefonía concreta acostumbran a ser incorrectas y provocarnos errores de servicio. ¿Podemos determinar si en el futuro, los próximos mensajes de esa red seguirán dando problemas? ¿Hemos notado el mismo efecto en otras redes de telefonía?**
+Podemos clasificar este pregunta como exploratoria porque pretende
+identificar la existencia de patrones o relaciones entre variables, en
+este caso, edad y género literario, sin partir de una hipótesis previa
+ni realizar inferencias.
 
- - Podemos clasificar la pregunta “¿Podemos determinar si en el futuro, los próximos mensajes de esa red seguirán dando problemas?” como predictiva porque busca anticipar el comportamiento futuro de las peticiones de esa red, en otras palabras, predecir resultados futuros a partir de datos históricos.
+**3. Dado un registro de peticiones a un sitio web, vemos que las
+peticiones que provienen de una red de telefonía concreta acostumbran a
+ser incorrectas y provocarnos errores de servicio. ¿Podemos determinar
+si en el futuro, los próximos mensajes de esa red seguirán dando
+problemas? ¿Hemos notado el mismo efecto en otras redes de telefonía?**
 
- - Podemos clasificar la pregunta “¿Hemos notado el mismo efecto en otras redes de telefonía?”como exploratoria, en tanto que pretende analizar si el patrón observado se reproduce en otros subconjuntos de datos, de manera neutral objetiva sin establecer relaciones causales ni realizar predicciones.
+-   Podemos clasificar la pregunta “¿Podemos determinar si en el futuro,
+    los próximos mensajes de esa red seguirán dando problemas?” como
+    predictiva porque busca anticipar el comportamiento futuro de las
+    peticiones de esa red, en otras palabras, predecir resultados
+    futuros a partir de datos históricos.
 
-**4. Dado los registros de usuarios de un servicio de compras por internet, los usuarios pueden agruparse por preferencias de productos comprados. Queremos saber si ¿Es posible que, dado un usuario al azar y según su historial, pueda ser directamente asignado a un o diversos grupos?**
+-   Podemos clasificar la pregunta “¿Hemos notado el mismo efecto en
+    otras redes de telefonía?”como exploratoria, en tanto que pretende
+    analizar si el patrón observado se reproduce en otros subconjuntos
+    de datos, de manera neutral objetiva sin establecer relaciones
+    causales ni realizar predicciones.
 
-Podemos clasificar la pregunta como de inferencia porque busca asignar un usuario a uno o varios grupos definidos por preferencias de productos, a partir de su historial de compras.
+**4. Dado los registros de usuarios de un servicio de compras por
+internet, los usuarios pueden agruparse por preferencias de productos
+comprados. Queremos saber si ¿Es posible que, dado un usuario al azar y
+según su historial, pueda ser directamente asignado a un o diversos
+grupos?**
 
-Pregunta 2 Enunciado
+Podemos clasificar la pregunta como de inferencia porque busca asignar
+un usuario a uno o varios grupos definidos por preferencias de
+productos, a partir de su historial de compras.
+
+### Pregunta 2 Enunciado
 
 Considera el siguiente escenario: Sabemos que un usuario de nuestra red
 empresarial ha estado usando esta para fines no relacionados con el
@@ -56,8 +91,7 @@ tratamiento deberían recibir, qué preguntas hacerse para resolver el
 problema, qué datos y gráficos se obtendrían, y cómo se comunicarían
 estos
 
-Respuesta
-El problema planteado consiste en identificar posibles
+Respuesta El problema planteado consiste en identificar posibles
 usuarios internos que hayan expuesto servicios web no autorizados
 utilizando unicamente registros de conexiones TCP salientes, evitando
 tecnicas intrusivas como el escaneo de puertos y teniendo en cuenta que
@@ -107,11 +141,13 @@ facilitando el dialogo con los usuarios implicados para explicar los
 riesgos de exponer servicios sin autorizacion y reforzar las politicas
 de seguridad de la organizacion.
 
-## Introducción a R
+## 2. Introducción a R
 
 ### Preparación de los datos
 
-Para poder analizar los datos, primero debemos cargarlos dentro de R. Para ello, vamos a usar la libreria readr, que nos permitira realizar dicha tarea.
+Para poder analizar los datos, primero debemos cargarlos dentro de R.
+Para ello, vamos a usar la libreria readr, que nos permitira realizar
+dicha tarea.
 
 ```{r}
 #instrucción para descargar la libreria de readr. En caso de ya tenerla instalada, se puede comentar
@@ -121,23 +157,37 @@ library("readr")
 logs <- read_log("epa-http.csv")
 ```
 
-Si nos fijamos en la salida anterior, observamos 2 datos importantes respecto a al almacenamiento de datos anterior. Primero nos aparecen las columnas que tiene nuestro dataset, con su respectivo tipo cada una i seguido tenemos un conjunto de Warnings para algunos de nuestros elementos.
+Si nos fijamos en la salida anterior, observamos 2 datos importantes
+respecto a al almacenamiento de datos anterior. Primero nos aparecen las
+columnas que tiene nuestro dataset, con su respectivo tipo cada una i
+seguido tenemos un conjunto de Warnings para algunos de nuestros
+elementos.
 
-Empezaremos analizando que es lo que sucede con estos Warnings, por lo que empezaremos gurdando todos los id de las filas donde ha sucedido algún error.
+Empezaremos analizando que es lo que sucede con estos Warnings, por lo
+que empezaremos gurdando todos los id de las filas donde ha sucedido
+algún error.
 
 ```{r}
 errores <- problems(logs)$row
 print(errores)
 ```
 
-Seguidamente, para todos las filas donde hay errores, obtenemos todas las columnas.
+Seguidamente, para todos las filas donde hay errores, obtenemos todas
+las columnas.
 
 ```{r}
 filas_con_errores <- logs[errores, ]
 print(filas_con_errores)
 ```
 
-Si obserbamos los datos obtenidos, la columna X4, que corresponde al estado de las llamadas HTTP, siempre da como resultado 404 (Not Found). Como hemos visto antes, la columna X5 es representada por col_double (que son numeros) por lo que si R detecta otro tipo de dato que no sea este, por defecto lo pondra como NA. Para poder tenerlos en cuenta, hemos decidido modificar los datos obtenidos por tal de hacer lo siguiente: Cualquier elemento existente dentro de la columna X5 con valor NA, será sustituido por el valor 0.
+Si obserbamos los datos obtenidos, la columna X4, que corresponde al
+estado de las llamadas HTTP, siempre da como resultado 404 (Not Found).
+Como hemos visto antes, la columna X5 es representada por col_double
+(que son numeros) por lo que si R detecta otro tipo de dato que no sea
+este, por defecto lo pondra como NA. Para poder tenerlos en cuenta,
+hemos decidido modificar los datos obtenidos por tal de hacer lo
+siguiente: Cualquier elemento existente dentro de la columna X5 con
+valor NA, será sustituido por el valor 0.
 
 ```{r}
 #install.packages("dplyr")
@@ -149,7 +199,8 @@ logs <- logs %>% mutate(X5 = replace_na(X5, 0))
 print(logs)
 ```
 
-Ahora que el dataset esta limpio, procedemos a poner los nombres de las columnas.
+Ahora que el dataset esta limpio, procedemos a poner los nombres de las
+columnas.
 
 ```{r}
 colnames(logs) <- c("IP", "Timestamp", "Peticion", "CodigoRespuesta", "BytesReply")
@@ -157,11 +208,13 @@ colnames(logs) <- c("IP", "Timestamp", "Peticion", "CodigoRespuesta", "BytesRepl
 head(logs)
 ```
 
-Con esto ya tenemos nuestro dataset limpio y preparado para poder empezar a realizar el analisis sobre este.
+Con esto ya tenemos nuestro dataset limpio y preparado para poder
+empezar a realizar el analisis sobre este.
 
 ### Pregunta 1
 
-1.  Cuales son las dimensiones del dataset cargado (número de filas y columnas)
+**1. Cuales son las dimensiones del dataset cargado (número de filas y
+columnas)**
 
 ```{r}
 rows <- nrow(logs)
@@ -171,7 +224,7 @@ print(rows)
 print(columns)
 ```
 
-2.  Valor medio de la columna Bytes
+**2. Valor medio de la columna Bytes**
 
 ```{r}
 media <- mean(logs$BytesReply)
@@ -181,17 +234,20 @@ print(media)
 
 ### Pregunta 2
 
-De las diferentes IPs de origen accediendo al servidor, ¿cuantas pertenecen a una IP claramente educativa (que contenga ".edu")?
+**De las diferentes IPs de origen accediendo al servidor, ¿cuantas
+pertenecen a una IP claramente educativa (que contenga ".edu")?**
 
 ```{r}
 #install.packages("stringr")
 library("stringr")
 
-ips <- logs$IP
-
-ips_edu <- str_subset(ips,"\\.edu$")
-print(ips_edu)
+#Buscamos los logs que contengan .edu y los almacenamos en una nueva variable
+ips_edu <- str_subset(logs$IP,"\\.edu$")
+head(ips_edu)
 ```
+
+Primero realizaremos el calculo total de IPs educativas que aparecen en
+los logs.
 
 ```{r}
 total_ips_edu <- length(ips_edu)
@@ -199,15 +255,21 @@ total_ips_edu <- length(ips_edu)
 print(total_ips_edu)
 ```
 
+Seguidamente, con la funcion unique(), podemos obtener todas las IPs
+distintas que aparecen.
+
 ```{r}
 ips_edu_unicas <- unique(ips_edu)
 total_ips_edu_unicas <- length(ips_edu_unicas)
 
 print(total_ips_edu_unicas)
 ```
+
 ### Pregunta 3
 
-De todas las peticiones recibidas por el servidor cual es la hora en la que hay mayor volumen de peticiones HTTP de tipo "GET"?
+**De todas las peticiones recibidas por el servidor cual es la hora en
+la que hay mayor volumen de peticiones HTTP de tipo "GET"?**
+
 ```{r}
 #Obtenemos todos los logs que realizen una peticion GET
 peticiones_get <- logs[grep("GET", logs$Peticion), ]
@@ -223,75 +285,71 @@ hora_pico <- peticiones_get %>%
 print(hora_pico)
 
 ```
+
 La hora donde hay mas logs de con peticiones GET es:
+
 ```{r}
 print(hora_pico[1,])
 ```
 
 ### Pregunta 4
-De las peticiones hechas por instituciones educativas (.edu), ¿Cuantos bytes en total se 
-han transmitido, en peticiones de descarga de ficheros de texto ".txt"?
+
+**De las peticiones hechas por instituciones educativas (.edu), ¿Cuantos
+bytes en total se han transmitido, en peticiones de descarga de ficheros
+de texto ".txt"?**
+
 ```{r}
-library(readr)
-library(dplyr)
-library(stringr)
-
-logs <- read_delim(
-  "epa-http.csv",
-  delim = " ",
-  col_names = FALSE,
-  quote = "\"",
-  trim_ws = TRUE
-  
-)
-
-ncol(logs)
-
-colnames(logs)[1:7] <- c("host", "time", "request", "status", "bytes")
-
-logs <- logs %>%
+logs2 <- logs %>%
   mutate(
-    bytes = ifelse(bytes == "-" | is.na(bytes), "0", bytes),
-    bytes = as.numeric(bytes)
-  )
-  
-logs2 <- logs%>%
-  mutate(
-    req_parts =str_split(request, " ", simplify = TRUE),
+    req_parts = str_split(logs$Peticion, " ", simplify = TRUE),
     method = req_parts[,1],
     url = req_parts[,2],
     proto = req_parts[,3]
   )
 
 p4 <- logs2 %>%
-  filter(str_detect(host, "\\.edu")) %>%
+  filter(str_detect(IP, "\\.edu")) %>%
   filter(str_detect(url, "\\.txt$")) %>%
-  summarise(total_bytes_txt = sum(bytes, na.rm = TRUE))
+  summarise(total_bytes_txt = sum(BytesReply))
 
-p4
-
-p4$total_bytes_txt
-
+print(p4)
 ```
-Para responder a esta pregunta se filtraron las peticiones cuyo host pertenece a instituciones educativas (dominios que continen ".edu") y cuya URL corresponde a descargas de ficheros de texto con extension ".txt". Posteriormente, se calcularon los bytes totales transmitidos sumando la columna 'bytes', tras convertirla previamente a formato numerico y tratar valores ausentes.
+
+```{r}
+print(p4$total_bytes_txt)
+```
+
+Para responder a esta pregunta se filtraron las peticiones cuyo host
+pertenece a instituciones educativas (dominios que continen ".edu") y
+cuya URL corresponde a descargas de ficheros de texto con extension
+".txt". Posteriormente, se calcularon los bytes totales transmitidos
+sumando la columna 'bytes', tras convertirla previamente a formato
+numerico y tratar valores ausentes.
 
 ### Pregunta 5
 
-Si separamos la petición en 3 partes (Tipo, URL, Protocolo), usando str_split y el separador " " (espacio), ¿cuantas peticiones buscan directamente la URL = "/"?
+**Si separamos la petición en 3 partes (Tipo, URL, Protocolo), usando
+str_split y el separador " " (espacio), ¿cuantas peticiones buscan
+directamente la URL = "/"?**
 
 ```{r}
-#logs$Peticion <- str_split(logs$Peticion, " ", simplify = TRUE)
+#Solo ejecutar la primera linea la primera vez, luego hay que comentarla a no ser que se limpien los datos
+logs$Peticion <- str_split(logs$Peticion, " ", simplify = TRUE)
 sum(logs$Peticion[,2] == "/")
 
 ```
 
-```{Pregunta 6}
-```
+### Pregunta 6
 
-###Pregunta 6
-
-Aprovechando que hemos separado la petición en 3 partes (Tipo, URL, Protocolo) ¿Cuantas peticiones NO tienen como protocolo "HTTP/0.2"?
+**Aprovechando que hemos separado la petición en 3 partes (Tipo, URL,
+Protocolo) ¿Cuantas peticiones NO tienen como protocolo "HTTP/0.2"?**
 
 ```{r}
 sum(logs$Peticion[,3] != "HTTP/0.2")
+```
+
+```{r}
+http02 <- logs %>% filter(str_detect(logs$Peticion[,3], "HTTP/0.2"))
+
+print(http02)
 ```
