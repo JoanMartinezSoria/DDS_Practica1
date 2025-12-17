@@ -1,5 +1,5 @@
 ---
-title: "Práctica 1"
+title: "Actividad Evaluable 1"
 output: html_document
 date: "2025-12-15"
 editor_options: 
@@ -199,6 +199,14 @@ logs <- logs %>% mutate(X5 = replace_na(X5, 0))
 print(logs)
 ```
 
+Como para alguna pregunta mas adelante, hara analizar datos por la
+fecha, procedemos a parsear los datos con strptime(), que transforma los
+los datos siguiendo un patrón en una fecha como tal.
+
+```{r}
+logs$X2 <- strptime(logs$X2, format = "%d:%H:%M:%S")
+```
+
 Ahora que el dataset esta limpio, procedemos a poner los nombres de las
 columnas.
 
@@ -207,9 +215,6 @@ colnames(logs) <- c("IP", "Timestamp", "Peticion", "CodigoRespuesta", "BytesRepl
 
 head(logs)
 ```
-
-Con esto ya tenemos nuestro dataset limpio y preparado para poder
-empezar a realizar el analisis sobre este.
 
 ### Pregunta 1
 
@@ -271,18 +276,21 @@ print(total_ips_edu_unicas)
 la que hay mayor volumen de peticiones HTTP de tipo "GET"?**
 
 ```{r}
+#install.packages("lubridate")
+library("lubridate")
 #Obtenemos todos los logs que realizen una peticion GET
-peticiones_get <- logs[grep("GET", logs$Peticion), ]
+peticiones_get <- logs %>%
+  filter(str_detect(Peticion, "^GET"))
 
-#Buscamos la "hora pico" dentro de nuestro listado de logs que realizan peticiones GET
+#Calculamos la hora con mas peticiones GET
 hora_pico <- peticiones_get %>%
-  #Tratamos el Timestamp para poder dividir los valores de este y poder diferenciarlos
-  mutate(Timestamp = str_remove_all(Timestamp, "\\[|\\]")) %>%
-  separate(Timestamp, into = c("Dia", "Hora", "Minuto", "Segundo"), sep = ":", convert = TRUE) %>%
-  #Hacemos el recuento por Horas
-  count(Hora, sort = TRUE)
-
-print(hora_pico)
+  mutate(
+    #Como tenemos los datos tratados con anterioridad, podemos obtener el dia y la hora de un timestamp por separadp, ya que podria haber peticiones en la misma hora pero dias distintos
+    dia = day(peticiones_get$Timestamp),
+    hora = hour(peticiones_get$Timestamp)
+  ) %>%
+  #Hacemos el conteo de gets por cada dia y hora
+  count(dia, hora, sort = TRUE)
 
 ```
 
@@ -290,6 +298,56 @@ La hora donde hay mas logs de con peticiones GET es:
 
 ```{r}
 print(hora_pico[1,])
+```
+
+Finalmente podemos observar los resultados obtenidos en forma de tabla.
+
+Esta primera tabla es usando el barplot simple de R:
+
+```{r}
+#Juntamos dia y hora en una misma variable
+datos_tabla <- xtabs(n ~ dia + hora, data = hora_pico)
+
+barplot(
+  datos_tabla, 
+  beside = TRUE,
+  col = rainbow(nrow(datos_tabla)),
+  legend = rownames(datos_tabla), # Pone la leyenda automática con los días (29, 30)
+  args.legend = list(x = "topright", title = "Día"), # Coloca la leyenda
+  
+  # Etiquetas
+  main = "Peticiones GET por Hora y Día",
+  xlab = "Hora del día",
+  ylab = "Cantidad de Peticiones",
+  las = 1 # Hace que los números del eje Y se lean en horizontal
+)
+```
+
+Esta segunda tabla es un poco mas completa, pero mas compleja de
+configurar. Esta usa la libreria ggplot2 y crea un plot igual al
+anterior, pero con mayor calidad y con una mejora estetica.
+
+```{r}
+#install.packages("ggplot2")
+library(ggplot2)
+
+#Codigo para crear un 
+ggplot(hora_pico, aes(x = factor(hora), y = n, fill = factor(dia))) +
+  geom_col(position = "dodge", width = 0.35) +
+  
+  #Codigo para añadir el valor exacto encima de cada barra
+  geom_text(aes(label = n), 
+            position = position_dodge(width = 0.7), 
+            vjust = -0.5, # Mueve el texto un poco hacia arriba
+            size = 2.5) +   # Tamaño del texto
+  
+  #Etiquetas y estética
+  labs(
+    title = "Peticiones GET por Día y Hora",
+    x = "Hora",
+    y = "Número de Peticiones",
+    fill = "Día del Mes"
+  )
 ```
 
 ### Pregunta 4
@@ -334,7 +392,7 @@ directamente la URL = "/"?**
 
 ```{r}
 #Solo ejecutar la primera linea la primera vez, luego hay que comentarla a no ser que se limpien los datos
-logs$Peticion <- str_split(logs$Peticion, " ", simplify = TRUE)
+#logs$Peticion <- str_split(logs$Peticion, " ", simplify = TRUE)
 sum(logs$Peticion[,2] == "/")
 
 ```
@@ -350,6 +408,5 @@ sum(logs$Peticion[,3] != "HTTP/0.2")
 
 ```{r}
 http02 <- logs %>% filter(str_detect(logs$Peticion[,3], "HTTP/0.2"))
-
-print(http02)
+head(http02)
 ```
