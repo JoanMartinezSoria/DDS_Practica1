@@ -1,9 +1,11 @@
 ---
 title: "Actividad Evaluable 1"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 date: "2025-12-15"
-editor_options: 
-  markdown: 
+editor_options:
+  markdown:
     wrap: 72
 ---
 
@@ -312,14 +314,14 @@ barplot(
   datos_tabla, 
   beside = TRUE,
   col = rainbow(nrow(datos_tabla)),
-  legend = rownames(datos_tabla), # Pone la leyenda automática con los días (29, 30)
-  args.legend = list(x = "topright", title = "Día"), # Coloca la leyenda
+  legend = rownames(datos_tabla), 
+  args.legend = list(x = "topright", title = "Día"), 
   
   # Etiquetas
   main = "Peticiones GET por Hora y Día",
   xlab = "Hora del día",
   ylab = "Cantidad de Peticiones",
-  las = 1 # Hace que los números del eje Y se lean en horizontal
+  las = 1 
 )
 ```
 
@@ -392,7 +394,7 @@ directamente la URL = "/"?**
 
 ```{r}
 #Solo ejecutar la primera linea la primera vez, luego hay que comentarla a no ser que se limpien los datos
-#logs$Peticion <- str_split(logs$Peticion, " ", simplify = TRUE)
+logs$Peticion <- str_split(logs$Peticion, " ", simplify = TRUE)
 sum(logs$Peticion[,2] == "/")
 
 ```
