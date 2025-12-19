@@ -19,9 +19,9 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ### Pregunta 1:
 
-De las siguientes preguntas, clasifica cada una como descriptiva,
+**De las siguientes preguntas, clasifica cada una como descriptiva,
 exploratoria, inferencia, predictiva o causal, y razona brevemente (una
-frase) el porqué:
+frase) el porqué:**
 
 **1. Dado un registro de vehículos que circulan por una autopista,
 disponemos de su marca y modelo, país de matriculación, y tipo de
@@ -72,10 +72,10 @@ Podemos clasificar la pregunta como de inferencia porque busca asignar
 un usuario a uno o varios grupos definidos por preferencias de
 productos, a partir de su historial de compras.
 
-### Pregunta 2 Enunciado
+### Pregunta 2
 
-Considera el siguiente escenario: Sabemos que un usuario de nuestra red
-empresarial ha estado usando esta para fines no relacionados con el
+**Considera el siguiente escenario: Sabemos que un usuario de nuestra
+red empresarial ha estado usando esta para fines no relacionados con el
 trabajo, como por ejemplo tener un servicio web no autorizado abierto a
 la red (otros usuarios tienen servicios web activados y autorizados). No
 queremos tener que rastrear los puertos de cada PC, y sabemos que la
@@ -91,13 +91,13 @@ detalle cómo se podría proceder al análisis y resolución del problema
 mediante Data Science, indicando de donde se obtendrían los datos, qué
 tratamiento deberían recibir, qué preguntas hacerse para resolver el
 problema, qué datos y gráficos se obtendrían, y cómo se comunicarían
-estos
+estos.**
 
-Respuesta El problema planteado consiste en identificar posibles
-usuarios internos que hayan expuesto servicios web no autorizados
-utilizando unicamente registros de conexiones TCP salientes, evitando
-tecnicas intrusivas como el escaneo de puertos y teniendo en cuenta que
-la actividad puede haber sido temporal o ya finalizada.
+El problema planteado consiste en identificar posibles usuarios internos
+que hayan expuesto servicios web no autorizados utilizando unicamente
+registros de conexiones TCP salientes, evitando tecnicas intrusivas como
+el escaneo de puertos y teniendo en cuenta que la actividad puede haber
+sido temporal o ya finalizada.
 
 El primer paso seria la obtencion de datos. En este caso, la fuente
 principal serian los registros de conexiones TCP de los equipos de los
